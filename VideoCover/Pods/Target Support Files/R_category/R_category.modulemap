@@ -1,0 +1,6 @@
+framework module R_category {
+  umbrella header "R_category-umbrella.h"
+
+  export *
+  module * { export * }
+}

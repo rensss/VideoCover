@@ -1,0 +1,20 @@
+PODS:
+  - Masonry (1.1.0)
+  - R_category (0.0.9)
+
+DEPENDENCIES:
+  - Masonry
+  - R_category
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - R_category
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  R_category: 4b6a2f491cc1cbbd6440342123a9f75855c9f96f
+
+PODFILE CHECKSUM: 67e8c54e9ec55733874f809c0fa3ed901b48be23
+
+COCOAPODS: 1.11.3

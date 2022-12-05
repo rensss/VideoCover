@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A7742A32939A0540087FEFA /* VideoCoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7742A22939A0540087FEFA /* VideoCoverModel.m */; };
+		1A7742A62939A0AF0087FEFA /* CoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7742A52939A0AF0087FEFA /* CoverCollectionViewCell.m */; };
+		1AB00486293840E70080A446 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB00485293840E70080A446 /* AppDelegate.m */; };
+		1AB00489293840E70080A446 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB00488293840E70080A446 /* SceneDelegate.m */; };
+		1AB0048C293840E70080A446 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB0048B293840E70080A446 /* ViewController.m */; };
+		1AB0048F293840E70080A446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AB0048D293840E70080A446 /* Main.storyboard */; };
+		1AB00491293840EC0080A446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB00490293840EC0080A446 /* Assets.xcassets */; };
+		1AB00494293840EC0080A446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AB00492293840EC0080A446 /* LaunchScreen.storyboard */; };
+		1AB00497293840EC0080A446 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB00496293840EC0080A446 /* main.m */; };
+		1AB0049F293841160080A446 /* CoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB0049E293841160080A446 /* CoverViewController.m */; };
+		BF75EF33C9B7CEBF14CF0FA1 /* Pods_VideoCover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52A93A8C1904014E5D5739 /* Pods_VideoCover.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A7742A12939A0540087FEFA /* VideoCoverModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCoverModel.h; sourceTree = "<group>"; };
+		1A7742A22939A0540087FEFA /* VideoCoverModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCoverModel.m; sourceTree = "<group>"; };
+		1A7742A42939A0AF0087FEFA /* CoverCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverCollectionViewCell.h; sourceTree = "<group>"; };
+		1A7742A52939A0AF0087FEFA /* CoverCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverCollectionViewCell.m; sourceTree = "<group>"; };
+		1AB00481293840E70080A446 /* VideoCover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCover.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AB00484293840E70080A446 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1AB00485293840E70080A446 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1AB00487293840E70080A446 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		1AB00488293840E70080A446 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		1AB0048A293840E70080A446 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1AB0048B293840E70080A446 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1AB0048E293840E70080A446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1AB00490293840EC0080A446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AB00493293840EC0080A446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1AB00495293840EC0080A446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AB00496293840EC0080A446 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1AB0049D293841160080A446 /* CoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverViewController.h; sourceTree = "<group>"; };
+		1AB0049E293841160080A446 /* CoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverViewController.m; sourceTree = "<group>"; };
+		3926B71C6DA5A2321275087C /* Pods-VideoCover.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCover.debug.xcconfig"; path = "Target Support Files/Pods-VideoCover/Pods-VideoCover.debug.xcconfig"; sourceTree = "<group>"; };
+		BEF3815EC6B95FB524FCE25B /* Pods-VideoCover.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCover.release.xcconfig"; path = "Target Support Files/Pods-VideoCover/Pods-VideoCover.release.xcconfig"; sourceTree = "<group>"; };
+		BF52A93A8C1904014E5D5739 /* Pods_VideoCover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoCover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AB0047E293840E70080A446 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF75EF33C9B7CEBF14CF0FA1 /* Pods_VideoCover.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1AB00478293840E70080A446 = {
+			isa = PBXGroup;
+			children = (
+				1AB00483293840E70080A446 /* VideoCover */,
+				1AB00482293840E70080A446 /* Products */,
+				5E3515E9E4303B8CE14A7834 /* Pods */,
+				4D25D45A0087C20EF1505B92 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1AB00482293840E70080A446 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AB00481293840E70080A446 /* VideoCover.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AB00483293840E70080A446 /* VideoCover */ = {
+			isa = PBXGroup;
+			children = (
+				1AB00484293840E70080A446 /* AppDelegate.h */,
+				1AB00485293840E70080A446 /* AppDelegate.m */,
+				1AB00487293840E70080A446 /* SceneDelegate.h */,
+				1AB00488293840E70080A446 /* SceneDelegate.m */,
+				1AB0048A293840E70080A446 /* ViewController.h */,
+				1AB0048B293840E70080A446 /* ViewController.m */,
+				1AB0049D293841160080A446 /* CoverViewController.h */,
+				1AB0049E293841160080A446 /* CoverViewController.m */,
+				1A7742A12939A0540087FEFA /* VideoCoverModel.h */,
+				1A7742A22939A0540087FEFA /* VideoCoverModel.m */,
+				1A7742A42939A0AF0087FEFA /* CoverCollectionViewCell.h */,
+				1A7742A52939A0AF0087FEFA /* CoverCollectionViewCell.m */,
+				1AB0048D293840E70080A446 /* Main.storyboard */,
+				1AB00490293840EC0080A446 /* Assets.xcassets */,
+				1AB00492293840EC0080A446 /* LaunchScreen.storyboard */,
+				1AB00495293840EC0080A446 /* Info.plist */,
+				1AB00496293840EC0080A446 /* main.m */,
+			);
+			path = VideoCover;
+			sourceTree = "<group>";
+		};
+		4D25D45A0087C20EF1505B92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF52A93A8C1904014E5D5739 /* Pods_VideoCover.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E3515E9E4303B8CE14A7834 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3926B71C6DA5A2321275087C /* Pods-VideoCover.debug.xcconfig */,
+				BEF3815EC6B95FB524FCE25B /* Pods-VideoCover.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AB00480293840E70080A446 /* VideoCover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AB0049A293840EC0080A446 /* Build configuration list for PBXNativeTarget "VideoCover" */;
+			buildPhases = (
+				D3BA4A05F3A7F220242E9BCD /* [CP] Check Pods Manifest.lock */,
+				1AB0047D293840E70080A446 /* Sources */,
+				1AB0047E293840E70080A446 /* Frameworks */,
+				1AB0047F293840E70080A446 /* Resources */,
+				C51F73FDFB6E1732343520F1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VideoCover;
+			productName = VideoCover;
+			productReference = 1AB00481293840E70080A446 /* VideoCover.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AB00479293840E70080A446 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					1AB00480293840E70080A446 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 1AB0047C293840E70080A446 /* Build configuration list for PBXProject "VideoCover" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AB00478293840E70080A446;
+			productRefGroup = 1AB00482293840E70080A446 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AB00480293840E70080A446 /* VideoCover */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AB0047F293840E70080A446 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AB00494293840EC0080A446 /* LaunchScreen.storyboard in Resources */,
+				1AB00491293840EC0080A446 /* Assets.xcassets in Resources */,
+				1AB0048F293840E70080A446 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C51F73FDFB6E1732343520F1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoCover/Pods-VideoCover-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoCover/Pods-VideoCover-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoCover/Pods-VideoCover-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3BA4A05F3A7F220242E9BCD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoCover-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AB0047D293840E70080A446 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AB0048C293840E70080A446 /* ViewController.m in Sources */,
+				1A7742A62939A0AF0087FEFA /* CoverCollectionViewCell.m in Sources */,
+				1A7742A32939A0540087FEFA /* VideoCoverModel.m in Sources */,
+				1AB0049F293841160080A446 /* CoverViewController.m in Sources */,
+				1AB00486293840E70080A446 /* AppDelegate.m in Sources */,
+				1AB00497293840EC0080A446 /* main.m in Sources */,
+				1AB00489293840E70080A446 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1AB0048D293840E70080A446 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AB0048E293840E70080A446 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1AB00492293840EC0080A446 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AB00493293840EC0080A446 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1AB00498293840EC0080A446 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1AB00499293840EC0080A446 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AB0049B293840EC0080A446 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3926B71C6DA5A2321275087C /* Pods-VideoCover.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KY9HF8C4PA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VideoCover/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MR.VideoCover;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1AB0049C293840EC0080A446 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEF3815EC6B95FB524FCE25B /* Pods-VideoCover.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KY9HF8C4PA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VideoCover/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MR.VideoCover;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AB0047C293840E70080A446 /* Build configuration list for PBXProject "VideoCover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AB00498293840EC0080A446 /* Debug */,
+				1AB00499293840EC0080A446 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AB0049A293840EC0080A446 /* Build configuration list for PBXNativeTarget "VideoCover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AB0049B293840EC0080A446 /* Debug */,
+				1AB0049C293840EC0080A446 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AB00479293840E70080A446 /* Project object */;
+}
