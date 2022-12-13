@@ -84,6 +84,7 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
             VideoCoverModel *model = [[VideoCoverModel alloc] init];
             model.asset = obj;
             
+            NSLog(@"---- itemWith:%f", itemWidth);
             if (self.ctime < 0) {
                 [self getPhotoWithAsset:obj photoWidth:itemWidth completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                     count ++;
@@ -99,22 +100,24 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
                 } progressHandler:nil networkAccessAllowed:YES];
             } else {
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    [weakSelf getAVAssetFromPHAsset:obj completion:^(AVAsset *avasset) {
-                        [weakSelf getThumbWithAsset:(AVURLAsset *)avasset atTime:0 completion:^(UIImage * _Nullable image) {
-                            count ++;
-                            model.coverImage = image;
-                            if (count == allAsset.count) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    NSLog(@"---- coverImage done");
-                                    [weakSelf.collectionView reloadData];
-                                    
-                                    // do something
-                                    CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
-                                    NSLog(@"---- url time: %f", end - start);
-                                });
-                            }
+                    @autoreleasepool {
+                        [weakSelf getAVAssetFromPHAsset:obj completion:^(AVAsset *avasset) {
+                            [weakSelf getThumbWithAsset:(AVURLAsset *)avasset atTime:0 completion:^(UIImage * _Nullable image) {
+                                count ++;
+                                model.coverImage = image;
+                                if (count == allAsset.count) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        NSLog(@"---- coverImage done");
+                                        [weakSelf.collectionView reloadData];
+                                        
+                                        // do something
+                                        CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+                                        NSLog(@"---- url time: %f", end - start);
+                                    });
+                                }
+                            }];
                         }];
-                    }];
+                    }
                 });
                 
 //                [weakSelf requestUrlWihtAsset:obj completion:^(AVAsset *avaseet, NSError *error) {
