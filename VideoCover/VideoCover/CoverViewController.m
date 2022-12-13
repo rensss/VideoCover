@@ -99,20 +99,71 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
                     }
                 } progressHandler:nil networkAccessAllowed:YES];
             } else {
-                [weakSelf getVideoUrl:obj completion:^(NSString *videoStr) {
-                    [weakSelf getThumbnailImage:[NSURL URLWithString:videoStr] atTime:self.ctime completion:^(UIImage * _Nullable image) {
+                
+                [weakSelf requestUrlWihtAsset:obj completion:^(AVAsset *avaseet, NSError *error) {
+                    if (error) {
                         count ++;
-                        model.coverImage = image;
+                        NSLog(@"---- error:%@", error);
                         if (count == allAsset.count) {
-                            NSLog(@"---- coverImage done");
+                            NSLog(@"---- error coverImage done");
                             [weakSelf.collectionView reloadData];
-                            
+
                             // do something
                             CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
-                            NSLog(@"---- url time: %f", end - start);
+                            NSLog(@"---- error url time: %f", end - start);
                         }
-                    }];
+                    } else {
+                        AVURLAsset *av = (AVURLAsset *)avaseet;
+
+                        NSString *videoStr = av.URL.absoluteString;
+                        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                            NSFileManager *fm = [NSFileManager defaultManager];
+                            NSError *error = nil;
+                            NSDictionary *dict = [fm attributesOfItemAtPath:videoStr error:&error];
+                            if (error) {
+                                NSLog(@"---- error:%@", error);
+                            }
+                            NSLog(@"---- %@",dict);
+                        });
+                        [weakSelf getThumbnailImage:[NSURL URLWithString:videoStr] atTime:self.ctime completion:^(UIImage * _Nullable image) {
+                            count ++;
+                            model.coverImage = image;
+                            if (count == allAsset.count) {
+                                NSLog(@"---- coverImage done");
+                                [weakSelf.collectionView reloadData];
+
+                                // do something
+                                CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+                                NSLog(@"---- url time: %f", end - start);
+                            }
+                        }];
+                    }
                 }];
+                
+                
+//                [weakSelf getVideoUrl:obj completion:^(NSString *videoStr) {
+//                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                        NSFileManager *fm = [NSFileManager defaultManager];
+//                        NSError *error = nil;
+//                        NSDictionary *dict = [fm attributesOfItemAtPath:videoStr error:&error];
+//                        if (error) {
+//                            NSLog(@"---- error:%@", error);
+//                        }
+//                        NSLog(@"---- %@",dict);
+//                    });
+//                    [weakSelf getThumbnailImage:[NSURL URLWithString:videoStr] atTime:self.ctime completion:^(UIImage * _Nullable image) {
+//                        count ++;
+//                        model.coverImage = image;
+//                        if (count == allAsset.count) {
+//                            NSLog(@"---- coverImage done");
+//                            [weakSelf.collectionView reloadData];
+//
+//                            // do something
+//                            CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+//                            NSLog(@"---- url time: %f", end - start);
+//                        }
+//                    }];
+//                }];
             }
             
             [models addObject:model];
@@ -238,6 +289,7 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
     videoRequestOptions.networkAccessAllowed = YES;
     
     [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:videoRequestOptions resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        NSLog(@"---- info - %@", info);
         dispatch_async(dispatch_get_main_queue(), ^{
             NSURL *videoURL;
             //video路径获取
@@ -252,5 +304,62 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
         });
     }];
 }
+
+- (void)requestUrlWihtAsset:(PHAsset *)passet completion:(void (^)(AVAsset *avaseet, NSError *error))completion {
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.networkAccessAllowed = YES;
+    options.version = PHVideoRequestOptionsVersionCurrent;
+    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+        
+    };
+    //相册中获取到的phAsset;
+    PHAsset *phAsset = passet; //= self.sset;
+    
+    [[PHImageManager defaultManager] requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+        if(([asset isKindOfClass:[AVComposition class]] && ((AVComposition *)asset).tracks.count == 2)){
+            //slow motion videos. See Here: https://overflow.buffer.com/2016/02/29/slow-motion-video-ios/
+            
+            //Output URL of the slow motion file.
+            NSString *root = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+            NSString *tempDir = [root stringByAppendingString:@"/com.sdk.demo/temp"];
+            if (![[NSFileManager defaultManager] fileExistsAtPath:tempDir isDirectory:nil]) {
+                [[NSFileManager defaultManager] createDirectoryAtPath:tempDir withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            NSString *myPathDocs =  [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"mergeSlowMoVideo-%d.mov",arc4random() % 1000]];
+            NSURL *url = [NSURL fileURLWithPath:myPathDocs];
+            //Begin slow mo video export
+            AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetHighestQuality];
+            exporter.outputURL = url;
+            exporter.outputFileType = AVFileTypeQuickTimeMovie;
+            exporter.shouldOptimizeForNetworkUse = YES;
+            
+            [exporter exportAsynchronouslyWithCompletionHandler:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (exporter.status == AVAssetExportSessionStatusCompleted) {
+                        NSURL *URL = exporter.outputURL;
+                        AVURLAsset *asset = [AVURLAsset assetWithURL:URL];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // 拿到有权限的asset
+                            completion(asset, nil);
+                        });
+                    }else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // 错误
+                            completion(nil, exporter.error);
+                        });
+                    }
+                });
+            }];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 拿到有权限的asset
+                completion(asset, nil);
+            });
+        }
+    }];
+}
+
+
 
 @end

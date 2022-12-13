@@ -57,10 +57,23 @@
     
     [self gg_TryOpenPhotoAlbum:^(BOOL granted) {
         if (granted) {
-            CoverViewController *coverVC = [[CoverViewController alloc] init];
-            coverVC.ctime = time;
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:coverVC];
-            [self presentViewController:nav animated:YES completion:nil];
+            
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status == PHAuthorizationStatusAuthorized) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        CoverViewController *coverVC = [[CoverViewController alloc] init];
+                        coverVC.ctime = time;
+                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:coverVC];
+                        [self presentViewController:nav animated:YES completion:nil];
+                    });
+                }
+            }];
+            
+            
+//            CoverViewController *coverVC = [[CoverViewController alloc] init];
+//            coverVC.ctime = time;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:coverVC];
+//            [self presentViewController:nav animated:YES completion:nil];
         } else {
             NSLog(@"---- no granted");
         }
@@ -73,6 +86,7 @@
 - (UITextField *)textField {
     if (!_textField) {
         _textField = [[UITextField alloc] init];
+        _textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         _textField.placeholder = @"封面CTime时间点 eg:0.0";
         _textField.layer.borderWidth = 1.0f;
         _textField.layer.borderColor = [UIColor blackColor].CGColor;
@@ -161,5 +175,13 @@
     }
 }
 
+// MARK: -- 获取相册权限
+- (void)getPhotoPermission{
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if (status == PHAuthorizationStatusAuthorized) {
+            //code
+        }
+    }];
+}
 
 @end
