@@ -78,7 +78,6 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
         
         CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
         
-        
         __weak typeof(self) weakSelf = self;
         __block NSInteger count = 0;
         [allAsset enumerateObjectsUsingBlock:^(PHAsset *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -99,46 +98,64 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
                     }
                 } progressHandler:nil networkAccessAllowed:YES];
             } else {
-                
-                [weakSelf requestUrlWihtAsset:obj completion:^(AVAsset *avaseet, NSError *error) {
-                    if (error) {
-                        count ++;
-                        NSLog(@"---- error:%@", error);
-                        if (count == allAsset.count) {
-                            NSLog(@"---- error coverImage done");
-                            [weakSelf.collectionView reloadData];
-
-                            // do something
-                            CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
-                            NSLog(@"---- error url time: %f", end - start);
-                        }
-                    } else {
-                        AVURLAsset *av = (AVURLAsset *)avaseet;
-
-                        NSString *videoStr = av.URL.absoluteString;
-                        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                            NSFileManager *fm = [NSFileManager defaultManager];
-                            NSError *error = nil;
-                            NSDictionary *dict = [fm attributesOfItemAtPath:videoStr error:&error];
-                            if (error) {
-                                NSLog(@"---- error:%@", error);
-                            }
-                            NSLog(@"---- %@",dict);
-                        });
-                        [weakSelf getThumbnailImage:[NSURL URLWithString:videoStr] atTime:self.ctime completion:^(UIImage * _Nullable image) {
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    [weakSelf getAVAssetFromPHAsset:obj completion:^(AVAsset *avasset) {
+                        [weakSelf getThumbWithAsset:(AVURLAsset *)avasset atTime:0 completion:^(UIImage * _Nullable image) {
                             count ++;
                             model.coverImage = image;
                             if (count == allAsset.count) {
-                                NSLog(@"---- coverImage done");
-                                [weakSelf.collectionView reloadData];
-
-                                // do something
-                                CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
-                                NSLog(@"---- url time: %f", end - start);
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    NSLog(@"---- coverImage done");
+                                    [weakSelf.collectionView reloadData];
+                                    
+                                    // do something
+                                    CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+                                    NSLog(@"---- url time: %f", end - start);
+                                });
                             }
                         }];
-                    }
-                }];
+                    }];
+                });
+                
+//                [weakSelf requestUrlWihtAsset:obj completion:^(AVAsset *avaseet, NSError *error) {
+//                    if (error) {
+//                        count ++;
+//                        NSLog(@"---- error:%@", error);
+//                        if (count == allAsset.count) {
+//                            NSLog(@"---- error coverImage done");
+//                            [weakSelf.collectionView reloadData];
+//
+//                            // do something
+//                            CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+//                            NSLog(@"---- error url time: %f", end - start);
+//                        }
+//                    } else {
+//                        AVURLAsset *av = (AVURLAsset *)avaseet;
+//
+//                        NSString *videoStr = av.URL.absoluteString;
+//                        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                            NSFileManager *fm = [NSFileManager defaultManager];
+//                            NSError *error = nil;
+//                            NSDictionary *dict = [fm attributesOfItemAtPath:videoStr error:&error];
+//                            if (error) {
+//                                NSLog(@"---- error:%@", error);
+//                            }
+//                            NSLog(@"---- %@",dict);
+//                        });
+//                        [weakSelf getThumbnailImage:[NSURL URLWithString:videoStr] atTime:self.ctime completion:^(UIImage * _Nullable image) {
+//                            count ++;
+//                            model.coverImage = image;
+//                            if (count == allAsset.count) {
+//                                NSLog(@"---- coverImage done");
+//                                [weakSelf.collectionView reloadData];
+//
+//                                // do something
+//                                CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+//                                NSLog(@"---- url time: %f", end - start);
+//                            }
+//                        }];
+//                    }
+//                }];
                 
                 
 //                [weakSelf getVideoUrl:obj completion:^(NSString *videoStr) {
@@ -194,35 +211,41 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
 
 // MARK: - utils
 - (void)getThumbnailImage:(NSURL *)videoURL atTime:(Float64)seconds completion:(MyImageBlock)handler {
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
-        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
-        
-        AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-        
-        generator.appliesPreferredTrackTransform = YES;
-        generator.requestedTimeToleranceBefore = kCMTimeZero;
-        generator.requestedTimeToleranceAfter = kCMTimeZero;
-        
-        CMTime time = CMTimeMakeWithSeconds(seconds, 600);
-        
-        NSError *error = nil;
-        
-        CMTime actualTime;
-        
-        CGImageRef imageRef = [generator copyCGImageAtTime:time actualTime:&actualTime error:&error];
-        
-        UIImage *thumb = [[UIImage alloc] initWithCGImage:imageRef];
-        
-        CGImageRelease(imageRef);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            handler(thumb);
-        });
-    });
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    [self getThumbWithAsset:asset atTime:seconds completion:handler];
 }
 
+- (void)getAVAssetFromPHAsset:(PHAsset *)asset completion:(void (^)(AVAsset *avasset))completion {
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.version = PHVideoRequestOptionsVersionCurrent;
+    
+    [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset * avasset, AVAudioMix * audioMix, NSDictionary * info) {
+        completion(avasset);
+    }];
+}
+
+- (void)getThumbWithAsset:(AVURLAsset *)asset atTime:(Float64)seconds completion:(MyImageBlock)handler {
+    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    
+    generator.appliesPreferredTrackTransform = YES;
+    generator.requestedTimeToleranceBefore = kCMTimeZero;
+    generator.requestedTimeToleranceAfter = kCMTimeZero;
+    
+    CMTime time = CMTimeMakeWithSeconds(seconds, 600);
+    
+    NSError *error = nil;
+    
+    CMTime actualTime;
+    
+    CGImageRef imageRef = [generator copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    
+    UIImage *thumb = [[UIImage alloc] initWithCGImage:imageRef];
+    
+    CGImageRelease(imageRef);
+    
+    handler(thumb);
+}
 
 // MARK: -相册相关
 - (NSArray<PHAsset *> *)getAllVideoAssetWithAscending:(BOOL)ascending {
