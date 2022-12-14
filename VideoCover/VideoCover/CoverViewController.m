@@ -213,7 +213,7 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
 
 
 // MARK: - utils
-- (void)getThumbnailImage:(NSURL *)videoURL atTime:(Float64)seconds completion:(MyImageBlock)handler {
+- (void)getThumbnailImage:(NSURL *)videoURL atTime:(Float64)seconds completion:(void(^)(UIImage *image))handler {
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
     [self getThumbWithAsset:asset atTime:seconds completion:handler];
 }
@@ -228,7 +228,7 @@ typedef void(^MyImageBlock)(UIImage * _Nullable image);
     }];
 }
 
-- (void)getThumbWithAsset:(AVURLAsset *)asset atTime:(Float64)seconds completion:(MyImageBlock)handler {
+- (void)getThumbWithAsset:(AVURLAsset *)asset atTime:(Float64)seconds completion:(void(^)(UIImage *image))handler {
     AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
     
     generator.appliesPreferredTrackTransform = YES;
